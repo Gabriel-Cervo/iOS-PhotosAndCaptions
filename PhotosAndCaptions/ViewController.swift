@@ -41,9 +41,12 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         try? jpegData.write(to: imagePath) // Save image in the url
 
         let photo = Photo(image: imageName, description: "Photo")
-        photos.append(photo)
+        photos.insert(photo, at: 0)
         
-        tableView.reloadData()
+        // Update the table view
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+        tableView.endUpdates()
         
         dismiss(animated: true)
     }
