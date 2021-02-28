@@ -84,6 +84,10 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         let imageURL = getDocumentsDirectory().appendingPathComponent(photo.image)
         photoCell.photoImageView.image = UIImage(contentsOfFile: imageURL.path)
+        photoCell.photoImageView.layer.borderWidth = 1.0
+        photoCell.photoImageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+        photoCell.photoImageView.layer.cornerRadius = photoCell.photoImageView.frame.size.width / 2
+        photoCell.photoImageView.clipsToBounds = true
         photoCell.photoDescription.text = photo.description
         
         photoCell.imageView?.layer.borderWidth = 2
