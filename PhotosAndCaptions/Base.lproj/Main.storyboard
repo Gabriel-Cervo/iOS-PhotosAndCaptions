@@ -61,8 +61,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="Description" destination="6Kr-5R-Yll" id="4bv-sv-F7B"/>
-                                    <outlet property="cellView" destination="QhL-nJ-hzd" id="fXv-xG-Cwy"/>
-                                    <outlet property="photo" destination="QhL-nJ-hzd" id="e4x-6Q-sKA"/>
+                                    <outlet property="photoImageView" destination="Ssi-I6-AzQ" id="718-lA-N4L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

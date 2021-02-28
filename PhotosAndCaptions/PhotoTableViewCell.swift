@@ -8,8 +8,7 @@
 import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
-    @IBOutlet weak var cellView: UIView!
-    @IBOutlet weak var photoImageView: UIView!
+    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoDescription: UILabel!
     
     override func awakeFromNib() {
