@@ -92,6 +92,25 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         return photoCell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "Details") as? DetailViewController else {
+            print("Cannot instantiate ViewController")
+            return
+            
+        }
+                
+        let photo = photos[indexPath.row]
+        
+        print(photo.description)
+        
+        detailVC.imageName = photo.image
+        detailVC.imageDescription = photo.description
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 
 
 }
