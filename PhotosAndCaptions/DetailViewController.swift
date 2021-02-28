@@ -17,34 +17,33 @@ class DetailViewController: UIViewController {
                 
         let imageURL = getDocumentsDirectory().appendingPathComponent(imageName!)
         
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.image = UIImage(contentsOfFile: imageURL.path)
+        let imageView = UIImageView(image: UIImage(contentsOfFile: imageURL.path))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
         imageView.layer.cornerRadius = view.frame.size.width / 2
         view.addSubview(imageView)
         
-        let labelView = UILabel()
-        labelView.text = imageDescription
+        let labelView = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        labelView.translatesAutoresizingMaskIntoConstraints = false
+        labelView.text = imageDescription!
         labelView.font = .systemFont(ofSize: 16)
         labelView.tintColor = .black
         view.addSubview(labelView)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 100),
-            imageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
             imageView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.4, constant: 100),
+            imageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
             
-//            labelView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            labelView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
+            labelView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            labelView.heightAnchor.constraint(greaterThanOrEqualToConstant: 20),
         ])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print(imageDescription!)
     }
 }

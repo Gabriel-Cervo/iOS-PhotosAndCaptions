@@ -43,7 +43,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         
         try? jpegData.write(to: imagePath) // Save image in the url
         
-        let alertController = UIAlertController(title: "Give your photo a title", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Give your photo a description", message: nil, preferredStyle: .alert)
         alertController.addTextField()
         alertController.addAction(UIAlertAction(title: "Done", style: .default, handler: { [weak self, weak alertController] (UIAlertAction) in
             guard let photoDescription = alertController?.textFields?[0].text else {
@@ -103,9 +103,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
                 
         let photo = photos[indexPath.row]
-        
-        print(photo.description)
-        
+                
         detailVC.imageName = photo.image
         detailVC.imageDescription = photo.description
         
