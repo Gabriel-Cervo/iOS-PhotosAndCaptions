@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // testing pourposes
+    let testing = true
+    
     var photos = [Photo]()
     
     override func viewDidLoad() {
@@ -20,7 +23,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
     @objc func addNewPhoto() {
         let picker = UIImagePickerController()
 
-        picker.sourceType = .camera
+        picker.sourceType = testing ? .photoLibrary : .camera
         picker.allowsEditing = true
         picker.delegate = self
         
@@ -39,16 +42,28 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         }
         
         try? jpegData.write(to: imagePath) // Save image in the url
-
-        let photo = Photo(image: imageName, description: "Photo")
-        photos.insert(photo, at: 0)
         
-        // Update the table view
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-        tableView.endUpdates()
+        let alertController = UIAlertController(title: "Give your photo a title", message: nil, preferredStyle: .alert)
+        alertController.addTextField()
+        alertController.addAction(UIAlertAction(title: "Done", style: .default, handler: { [weak self, weak alertController] (UIAlertAction) in
+            guard let photoDescription = alertController?.textFields?[0].text else {
+                return
+            }
+            
+            let photo = Photo(image: imageName, description: photoDescription)
+            self?.photos.insert(photo, at: 0)
+            
+            // Update the table view
+            self?.tableView.beginUpdates()
+            self?.tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+            self?.tableView.endUpdates()
+            
+            alertController?.dismiss(animated: true)
+        }))
         
         dismiss(animated: true)
+        
+        present(alertController, animated: true)
     }
     
     //MARK: TableView Methods
