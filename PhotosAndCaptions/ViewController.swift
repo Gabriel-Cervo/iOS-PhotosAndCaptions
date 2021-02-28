@@ -14,6 +14,40 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPhoto))
+        
+        loadPhotos()
+    }
+    
+    //MARK: Save and Load Methods
+    func loadPhotos() {
+        let defaults = UserDefaults.standard
+        
+        guard let savedData = defaults.object(forKey: "RecordedPhotos") as? Data else { return }
+        
+        let jsonDecoder = JSONDecoder()
+        
+        do {
+            photos = try jsonDecoder.decode([Photo].self, from: savedData)
+        } catch {
+            print("Failed to load photos")
+        }
+    }
+    
+    func save(_ photo: Photo) {
+        photos.insert(photo, at: 0)
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        
+        let jsonEncoder = JSONEncoder()
+        
+        if let encodedData = try? jsonEncoder.encode(photos) {
+            let defaults = UserDefaults.standard
+            defaults.set(encodedData, forKey: "RecordedPhotos")
+        } else {
+            print("Failed to save photos")
+        }
     }
     
     //MARK: ImagePicker Methods
@@ -48,13 +82,10 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
             }
             
             let photo = Photo(image: imageName, description: photoDescription)
-            self?.photos.insert(photo, at: 0)
             
-            // Update the table view
-            self?.tableView.beginUpdates()
-            self?.tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .automatic)
-            self?.tableView.endUpdates()
-            
+            // Save the image on the disk and insert in tableView
+            self?.save(photo)
+                        
             alertController?.dismiss(animated: true)
         }))
         
