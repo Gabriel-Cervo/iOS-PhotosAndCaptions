@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Photo" id="sji-nR-ZFn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Photo" id="sji-nR-ZFn" customClass="PhotoTableViewCell" customModule="PhotosAndCaptions" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="80.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sji-nR-ZFn" id="v01-Bq-hA9">
@@ -33,12 +33,21 @@
                                                         <constraint firstAttribute="height" constant="50" id="KsC-dm-llE"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kr-5R-Yll">
+                                                    <rect key="frame" x="58" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
+                                                <constraint firstItem="6Kr-5R-Yll" firstAttribute="centerY" secondItem="Ssi-I6-AzQ" secondAttribute="centerY" id="5GA-6V-1R2"/>
+                                                <constraint firstAttribute="trailing" secondItem="6Kr-5R-Yll" secondAttribute="trailing" constant="240" id="D6h-Vf-Dpd"/>
                                                 <constraint firstItem="Ssi-I6-AzQ" firstAttribute="centerY" secondItem="QhL-nJ-hzd" secondAttribute="centerY" id="ME3-mF-ecG"/>
                                                 <constraint firstAttribute="width" constant="410" id="fwW-Tk-Dsi"/>
                                                 <constraint firstItem="Ssi-I6-AzQ" firstAttribute="leading" secondItem="QhL-nJ-hzd" secondAttribute="leading" id="rLJ-3K-Ldw"/>
+                                                <constraint firstItem="6Kr-5R-Yll" firstAttribute="leading" secondItem="Ssi-I6-AzQ" secondAttribute="trailing" constant="8" symbolic="YES" id="y3B-iK-7xA"/>
                                                 <constraint firstAttribute="height" constant="43" id="yh7-lh-wtH"/>
                                             </constraints>
                                         </view>
@@ -50,6 +59,11 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="QhL-nJ-hzd" secondAttribute="bottom" constant="10" id="xaT-pC-2Tz"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="Description" destination="6Kr-5R-Yll" id="4bv-sv-F7B"/>
+                                    <outlet property="cellView" destination="QhL-nJ-hzd" id="fXv-xG-Cwy"/>
+                                    <outlet property="photo" destination="QhL-nJ-hzd" id="e4x-6Q-sKA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
