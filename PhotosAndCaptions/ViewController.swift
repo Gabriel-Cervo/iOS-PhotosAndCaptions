@@ -8,9 +8,6 @@
 import UIKit
 
 class ViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // testing pourposes
-    let testing = true
-    
     var photos = [Photo]()
     
     override func viewDidLoad() {
@@ -23,7 +20,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
     @objc func addNewPhoto() {
         let picker = UIImagePickerController()
 
-        picker.sourceType = testing ? .photoLibrary : .camera
+        picker.sourceType = .camera
         picker.allowsEditing = true
         picker.delegate = self
         
@@ -85,7 +82,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate, UI
         let imageURL = getDocumentsDirectory().appendingPathComponent(photo.image)
         photoCell.photoImageView.image = UIImage(contentsOfFile: imageURL.path)
         photoCell.photoImageView.layer.borderWidth = 1.0
-        photoCell.photoImageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+        photoCell.photoImageView.layer.borderColor = UIColor(white: 1.0, alpha: 0.5).cgColor
         photoCell.photoImageView.layer.cornerRadius = photoCell.photoImageView.frame.size.width / 2
         photoCell.photoImageView.clipsToBounds = true
         photoCell.photoDescription.text = photo.description

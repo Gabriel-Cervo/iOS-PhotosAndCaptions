@@ -13,14 +13,14 @@ class DetailViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
                 
         let imageURL = getDocumentsDirectory().appendingPathComponent(imageName!)
         
         let imageView = UIImageView(image: UIImage(contentsOfFile: imageURL.path))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+        imageView.layer.borderColor = UIColor(white: 1.0, alpha: 0.5).cgColor
         imageView.layer.cornerRadius = view.frame.size.width / 2
         view.addSubview(imageView)
         
@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.text = imageDescription!
         labelView.font = .systemFont(ofSize: 16)
-        labelView.tintColor = .black
+        labelView.tintColor = .white
         view.addSubview(labelView)
         
         NSLayoutConstraint.activate([
