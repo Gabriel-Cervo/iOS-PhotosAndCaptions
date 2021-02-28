@@ -32,6 +32,11 @@ class ViewController: UITableViewController {
         
         let imageURL = getDocumentsDirectory().appendingPathComponent(photo.image)
         photoCell.photoImageView.image = UIImage(contentsOfFile: imageURL.path)
+        
+        photoCell.imageView?.layer.borderWidth = 2
+        photoCell.imageView?.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+        
+        return photoCell
     }
 
 
